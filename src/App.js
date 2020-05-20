@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import TopMenu from "./components/TopMenu";
 import Products from "./components/Products";
 import useFetch from "./hooks/useFetch";
@@ -14,13 +15,24 @@ export default function App() {
     idsProducts.push(id);
     setProductCart(idsProducts);
     localStorage.setItem(STORAGE_PRODUCTS_CARS, productCart);
-    console.log("producto añadido");
+    toast.success(`${name}Añadido al carrito correctamente`);
   };
 
   return (
     <div>
       <TopMenu />
       <Products products={products} addProductCart={addProductCart} />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick={false}
+        rtl={false}
+        pauseOnVisibilityChange={false}
+        draggable
+        pauseOnHover={false}
+      />
     </div>
   );
 }
