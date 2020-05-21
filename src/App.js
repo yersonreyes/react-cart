@@ -30,12 +30,13 @@ export default function App() {
     idsProducts.push(id);
     setProductCart(idsProducts);
     localStorage.setItem(STORAGE_PRODUCTS_CARS, productCart);
+    getProductsCart();
     toast.success(`${name}Añadido al carrito correctamente`);
   };
 
   return (
     <div>
-      <TopMenu />
+      <TopMenu productCart={productCart} />
       <Products products={products} addProductCart={addProductCart} />
       <ToastContainer
         position="bottom-left"
