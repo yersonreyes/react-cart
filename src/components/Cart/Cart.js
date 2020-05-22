@@ -75,6 +75,7 @@ export default function Cart(props) {
             />
           ))}
         </div>
+        <CartContentFooter />
       </div>
     </>
   );
@@ -143,6 +144,18 @@ function RenderProduct(props) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function CartContentFooter(props) {
+  const { cartTotalPrice } = props;
+  return (
+    <div className="cart-content__footer">
+      <div>
+        <p>Total Aproximado</p>
+      </div>
+      <Button>Tramitar pedido</Button>
     </div>
   );
 }
