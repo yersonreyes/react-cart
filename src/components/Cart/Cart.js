@@ -4,11 +4,12 @@ import { ReactComponent as CartEmpy } from "../../assets/svg/cart-empty.svg";
 import { ReactComponent as CartFull } from "../../assets/svg/cart-full.svg";
 import { ReactComponent as Close } from "../../assets/svg/close.svg";
 import { ReactComponent as Garbage } from "../../assets/svg/garbage.svg";
+import { STORAGE_PRODUCTS_CARS } from "../../utils/constans";
 
 import "./Cart.scss";
 
 export default function Cart(props) {
-  const { productCart } = props;
+  const { productCart, getProductsCart } = props;
   const [cartOpen, setCartOpen] = useState(false);
   const widthCartContent = cartOpen ? 400 : 0;
 
@@ -22,6 +23,12 @@ export default function Cart(props) {
     setCartOpen(false);
     document.body.style.overflow = "scroll";
   };
+
+  const emptyCart = () => {
+    localStorage.removeItem(STORAGE_PRODUCTS_CARS);
+    getProductsCart();
+  };
+
   return (
     <>
       <Button variant="link" className="cart">
@@ -32,7 +39,7 @@ export default function Cart(props) {
         )}
       </Button>
       <div className="cart-content" style={{ width: widthCartContent }}>
-        <CartContentHeader />
+        <CartContentHeader closeCart={closeCart} emptyCart={emptyCart} />
         todos mis productos
       </div>
     </>
@@ -40,15 +47,15 @@ export default function Cart(props) {
 }
 
 function CartContentHeader(props) {
-  const {} = props;
+  const { closeCart, emptyCart } = props;
 
   return (
     <div className="cart-content__header">
       <div>
-        <Close />
+        <Close onClick={closeCart} />
         <h2>Carrito</h2>
       </div>
-      <Button variant="link">
+      <Button variant="link" onClick={emptyCart}>
         vaciar
         <Garbage />
       </Button>

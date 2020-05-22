@@ -36,7 +36,7 @@ export default function App() {
 
   return (
     <div>
-      <TopMenu productCart={productCart} />
+      <TopMenu productCart={productCart} getProductsCart={getProductsCart} />
       <Products products={products} addProductCart={addProductCart} />
       <ToastContainer
         position="bottom-left"

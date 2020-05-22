@@ -5,13 +5,13 @@ import { ReactComponent as Logo } from "../../assets/svg/original.svg";
 
 import "./TopMenu.scss";
 export default function TopMenu(props) {
-  const { productCart } = props;
+  const { productCart, getProductsCart } = props;
   return (
     <Navbar bg="dark" variant="dark" className="top-menu">
       <Container>
         <BrandNav />
         <MenuNav />
-        <Cart productCart={productCart} />
+        <Cart productCart={productCart} getProductsCart={getProductsCart} />
       </Container>
     </Navbar>
   );
